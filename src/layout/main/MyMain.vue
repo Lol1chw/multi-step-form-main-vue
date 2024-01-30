@@ -21,9 +21,13 @@
 
 @media screen and (min-width: 768px) {
     .main {
+        display: flex;
+        flex-direction: column;
+
+        max-height: none;
+
         margin: 0;
-        padding-inline: 92px;
-        padding-top: 32px;
+        padding: 32px 85px 18px 92px
     }
 }
 </style>

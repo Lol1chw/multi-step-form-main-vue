@@ -37,6 +37,11 @@ const props = defineProps<{
 }
 
 @media screen and (min-width: 768px) {
+
+    .info {
+      margin-bottom: 32px;
+    }
+
     .title {
         font-size: 32px;
 

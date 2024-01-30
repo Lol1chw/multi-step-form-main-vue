@@ -20,4 +20,14 @@ const props = defineProps<{
 
   font-size: 12px;
 }
+
+@media screen and (min-width: 768px) {
+  .label {
+    display: inline-block;
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+  }
+}
 </style>

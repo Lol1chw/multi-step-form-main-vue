@@ -10,6 +10,7 @@
   grid:
     "header" auto
     "main" 1fr
+    "footer" auto
     / 1fr;
   gap: 8px;
 
@@ -33,7 +34,6 @@
     margin: auto;
 
     width: 100%;
-    /* height: 100%;  можно убрать, т.к. используется и в мобильной версии*/
 
     max-width: 938px;
     max-height: 603px;

@@ -5,19 +5,17 @@ import MyLabel from '@/components/label/ui/MyLabel.vue'
 </script>
 
 <template>
-  <div>
-    <MyLabel
-      for="name"
-      label="Name"
-    />
-    <FormKit
-      id="name"
-      type="text"
-      name="name"
-      placeholder="e.g. Stephen King"
-      validation="required"
-    />
-  </div>
+  <MyLabel
+    for="name"
+    label="Name"
+  />
+  <FormKit
+    id="name"
+    type="text"
+    name="name"
+    placeholder="e.g. Stephen King"
+    validation="required"
+  />
 </template>
 
 <style>
@@ -35,5 +33,18 @@ import MyLabel from '@/components/label/ui/MyLabel.vue'
     font-size: 15px;
     font-family: Ubuntu;
     font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  .formkit-input {
+    padding: 16px 14px;
+
+    border-radius: 8px;
+  }
+
+  .formkit-input::placeholder {
+    font-size: 16px;
+    font-weight: 500;
+  }
 }
 </style>

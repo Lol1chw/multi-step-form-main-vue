@@ -23,4 +23,11 @@ import MyInputPhone from '@/components/inputs/inputPhone/ui/MyInputPhone.vue';
 
     list-style: none;
 }
+
+@media screen and (min-width: 768px) {
+    .list {
+        flex-grow: 1;
+        gap: 20px
+    }
+}
 </style>
