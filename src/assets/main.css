@@ -1,7 +1,15 @@
 @import './base.css';
 
 #app {
+  height: 100%;
   max-width: 1440px;
-  margin: 0 auto;
+  margin: auto;
   font-weight: normal;
+}
+
+@media screen and (min-width: 768px) {
+  #app {
+    display: flex;
+    margin: auto;
+  }
 }
