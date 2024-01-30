@@ -1,7 +1,7 @@
 <template>
-    <div :class="$style.sidebar">
-        <slot />
-    </div>
+  <div :class="$style.sidebar">
+    <slot />
+  </div>
 </template>
 
 <style module>

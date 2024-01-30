@@ -6,11 +6,21 @@ const props = defineProps<{
 </script>
 
 <template>
-    <h1 :class="$style.title">{{ props.title }}</h1>
-    <p :class="$style.description">{{ props.description }}</p>
+  <div :class="$style.info">
+    <h1 :class="$style.title">
+      {{ props.title }}
+    </h1>
+    <p :class="$style.description">
+      {{ props.description }}
+    </p>
+  </div>
 </template>
 
 <style module>
+.info {
+    margin-bottom: 13px;
+}
+
 .title {
     color: var(--Maribe-blue);
 

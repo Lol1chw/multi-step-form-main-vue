@@ -45,8 +45,12 @@ defineProps<{
         {{ index + 1 }}
       </div>
       <div v-if="mdAndLarger">
-        <p :class="$style.title">{{ item.title.toUpperCase() }}</p>
-        <p :class="$style.description">{{ item.description.toUpperCase() }}</p>
+        <p :class="$style.title">
+          {{ item.title.toUpperCase() }}
+        </p>
+        <p :class="$style.description">
+          {{ item.description.toUpperCase() }}
+        </p>
       </div>
     </div>
   </div>

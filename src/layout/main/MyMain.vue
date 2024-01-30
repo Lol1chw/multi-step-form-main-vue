@@ -1,7 +1,7 @@
 <template>
-    <main :class="$style.main">
-        <slot />
-    </main>
+  <main :class="$style.main">
+    <slot />
+  </main>
 </template>
 
 <style module>

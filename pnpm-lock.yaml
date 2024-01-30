@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@formkit/vue':
+    specifier: ^1.5.3
+    version: 1.5.3(typescript@5.3.2)
   '@vueuse/core':
     specifier: ^10.7.2
     version: 10.7.2(vue@3.3.11)
@@ -340,6 +343,98 @@ packages:
     resolution: {integrity: sha512-1S8uAY/MTJqVx0SC4epBq+N2yhuwtNwLbJYNZyhL2pO1ZVKn5HFXav5T41Ryzy9K9V7ZId2JB2oy/W4aCd9/2w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@formkit/core@1.5.3:
+    resolution: {integrity: sha512-aOgtncSwtlHftUwGlF7oMJwSbmv42A/3SryRSwIPdAzJnLRHzPTPeINwCiEMuu7VvJ7kmQfLfxqXSFFsDg/uCA==}
+    dependencies:
+      '@formkit/utils': 1.5.3
+    dev: false
+
+  /@formkit/dev@1.5.3:
+    resolution: {integrity: sha512-MsPEarqz8DgGY88/j7/lCOwtgToQY0fcN5HodRGbY2+iw3UdoAHxnMxjKIRqn+lzIP/CqS/w/vJ1y+Zox5vUqg==}
+    dependencies:
+      '@formkit/core': 1.5.3
+      '@formkit/utils': 1.5.3
+    dev: false
+
+  /@formkit/i18n@1.5.3:
+    resolution: {integrity: sha512-CDjwP/p/1qat0KW+95g7kgaTdtGdQ6ur9rzavhQbG7oHGOF/TNU1B7VI1t/x183vdEiJEcUqzMUGI2H+LKNeyw==}
+    dependencies:
+      '@formkit/core': 1.5.3
+      '@formkit/utils': 1.5.3
+      '@formkit/validation': 1.5.3
+    dev: false
+
+  /@formkit/inputs@1.5.3:
+    resolution: {integrity: sha512-5xrxUKBGJxI5oji9YNQphT8cmOJOQNqdWUafD+GSGmZQ0foGzh3cZmCbZI9ck7ZnMybQyKbUEVPxbS00Ab9Lug==}
+    dependencies:
+      '@formkit/core': 1.5.3
+      '@formkit/utils': 1.5.3
+    dev: false
+
+  /@formkit/observer@1.5.3:
+    resolution: {integrity: sha512-WSnBLKBc5kptiaS03oFnrC3t13ITC06kT2zcrJ7ThU0oQ4xQ0TMrEtXuJLjac5LuwvzBNDDfGUJtWjcnJXVBBA==}
+    dependencies:
+      '@formkit/core': 1.5.3
+      '@formkit/utils': 1.5.3
+    dev: false
+
+  /@formkit/rules@1.5.3:
+    resolution: {integrity: sha512-71Hmd1NpTTzshpZ9kXkuRRZCgwspRJFWoRE8h01bdx6J9z8HBHKi+jMsey4l6VUZFXRKFxACyMAMO0Vp2deeQQ==}
+    dependencies:
+      '@formkit/core': 1.5.3
+      '@formkit/utils': 1.5.3
+      '@formkit/validation': 1.5.3
+    dev: false
+
+  /@formkit/themes@1.5.3:
+    resolution: {integrity: sha512-fB86nPHTqveb2OFLuqrdAJQ6n15OwHngkCgIsu28OxPEbC0Qu/v6vQrqgEL+JFhVqcsqOTgDGzRnx13kGnwAVQ==}
+    peerDependencies:
+      tailwindcss: ^3.2.0
+      unocss: ^0.31.0
+      windicss: ^3.0.0
+    peerDependenciesMeta:
+      tailwindcss:
+        optional: true
+      unocss:
+        optional: true
+      windicss:
+        optional: true
+    dependencies:
+      '@formkit/core': 1.5.3
+    dev: false
+
+  /@formkit/utils@1.5.3:
+    resolution: {integrity: sha512-WmdWYq3rZqI+AXJ7tY1E9ASH8PJ0XSYXhjnoY5wCBepRvKme6kElMaq8PifFMAN+2QBXv2UV1JjQvbCKZxeh9w==}
+    dev: false
+
+  /@formkit/validation@1.5.3:
+    resolution: {integrity: sha512-kxnKHgF/aZVcLIbgp/TZpuPWg1DtvYhN9NwasyQxx4qjZjOBlfd1ijslcr8h3YEKV47nrwZgPhoZ7JDNuVvR3g==}
+    dependencies:
+      '@formkit/core': 1.5.3
+      '@formkit/observer': 1.5.3
+      '@formkit/utils': 1.5.3
+    dev: false
+
+  /@formkit/vue@1.5.3(typescript@5.3.2):
+    resolution: {integrity: sha512-itUb4pL9XXCT9GghKI9kdxeb8TruOLNL7OavRxbFZLLi5tRXzbQMGgymNNLjQn88mn8BdhMhEoV1ocPhYhV9MA==}
+    dependencies:
+      '@formkit/core': 1.5.3
+      '@formkit/dev': 1.5.3
+      '@formkit/i18n': 1.5.3
+      '@formkit/inputs': 1.5.3
+      '@formkit/observer': 1.5.3
+      '@formkit/rules': 1.5.3
+      '@formkit/themes': 1.5.3
+      '@formkit/utils': 1.5.3
+      '@formkit/validation': 1.5.3
+      vue: 3.3.11(typescript@5.3.2)
+    transitivePeerDependencies:
+      - tailwindcss
+      - typescript
+      - unocss
+      - windicss
+    dev: false
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
