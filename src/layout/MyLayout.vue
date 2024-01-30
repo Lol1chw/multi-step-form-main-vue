@@ -13,9 +13,10 @@
     / 1fr;
   gap: 8px;
 
-  background-color: var(--White);
-
   border-radius: 12px;
+
+  height: 100%;
+
 }
 
 @media screen and (min-width: 768px) {
@@ -26,15 +27,13 @@
         / 275px 1fr;
     gap: 8px;
 
-    /* padding: 20px; */
+    background-color: var(--White);
+
     padding: 17px 14px;
     margin: auto;
 
     width: 100%;
-    height: 100%;
-
-    /* max-width: 950px;
-    max-height: 610px; */
+    /* height: 100%;  можно убрать, т.к. используется и в мобильной версии*/
 
     max-width: 938px;
     max-height: 603px;

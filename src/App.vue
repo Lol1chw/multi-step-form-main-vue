@@ -2,7 +2,10 @@
 import MyLayout from '@/layout/MyLayout.vue'
 import MyHeader from '@/layout/header/MyHeader.vue';
 import MySidebar from '@/layout/sidebar/MySidebar.vue';
-import MyStepper from '@/components/stepper/ui/MyStepper.vue'
+import MyMain from '@/layout/main/MyMain.vue';
+import MyStepper from '@/components/stepper/ui/MyStepper.vue';
+import MyCardInfo from '@/components/cardInfo/ui/MyCardInfo.vue'
+
 import { ref } from 'vue';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 const currentStep = ref<number>(1)
@@ -13,13 +16,11 @@ const mdAndLarger = breakpoints.greaterOrEqual('md')
 
 <template>
   <MyLayout>
-    <MyHeader v-if="!mdAndLarger">
+    <component :is="mdAndLarger ? MySidebar : MyHeader">
       <MyStepper :current-step="currentStep" :md-and-larger="mdAndLarger"/>
-      <button @click="currentStep++">increment</button>
-    </MyHeader>
-
-    <MySidebar v-else>
-      <MyStepper :current-step="currentStep" :md-and-larger="mdAndLarger"/>
-    </MySidebar>
+    </component>
+      <MyMain>
+        <MyCardInfo title="Personal info" description="Please provide your name, email address, and phone number."/>
+      </MyMain>
   </MyLayout>
 </template>
