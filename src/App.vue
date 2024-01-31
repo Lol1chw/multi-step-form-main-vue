@@ -1,54 +1,7 @@
 <script setup lang="ts">
-import MyLayout from '@/layout/MyLayout.vue'
-import MyHeader from '@/layout/header/MyHeader.vue';
-import MySidebar from '@/layout/sidebar/MySidebar.vue';
-import MyMain from '@/layout/main/MyMain.vue';
-import MyFooter from '@/layout/footer/MyFooter.vue';
-import MyStepper from '@/components/stepper/ui/MyStepper.vue';
-import MyCardInfo from '@/components/cardInfo/ui/MyCardInfo.vue';
-import MyInputGroup from '@/components/inputGroup/input/ui/MyInputGroup.vue'
-import MyButtonGroup from '@/components/buttonGroup/ui/MyButtonGroup.vue';
-
-import { ref } from 'vue';
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
-const currentStep = ref<number>(1)
-
-const breakpoints = useBreakpoints(breakpointsTailwind)
-const mdAndLarger = breakpoints.greaterOrEqual('md')
-const confirm = ():void => {
-  console.log(currentStep.value)
-}
+import MultiStepForm from '@/pages/MultiStepForm.vue';
 </script>
 
 <template>
-  <MyLayout>
-    <component :is="mdAndLarger ? MySidebar : MyHeader">
-      <MyStepper
-        :current-step="currentStep"
-        :md-and-larger="mdAndLarger"
-      />
-    </component>
-    <MyMain>
-      <MyCardInfo
-        title="Personal info"
-        description="Please provide your name, email address, and phone number."
-      />
-      <MyInputGroup />
-      <MyButtonGroup
-        v-if="mdAndLarger"
-        :current-step="currentStep"
-        @increment="currentStep++"
-        @decrement="currentStep--"
-        @confirm="confirm()"
-      />
-    </MyMain>
-    <MyFooter v-if="!mdAndLarger">
-      <MyButtonGroup
-        :current-step="currentStep"
-        @increment="currentStep++"
-        @decrement="currentStep--"
-        @confirm="confirm()"
-      />
-    </MyFooter>
-  </MyLayout>
+  <MultiStepForm />
 </template>

@@ -1,15 +1,9 @@
 <script setup lang="ts">
 import MyButton from '@/components/button/ui/MyButton.vue';
 
-defineProps<{
-    currentStep: number
-}>()
+import { useStepper, symbol } from '@/components/stepper/model/stepperContext';
 
-defineEmits<{
-    (e: 'increment'): void
-    (e: 'decrement'): void
-    (e: 'confirm'): void
-}>()
+const { increment, decrement, confirm, currentStep } = useStepper(symbol)
 </script>
 
 <template>
@@ -18,12 +12,12 @@ defineEmits<{
       v-if="currentStep > 1"
       variant="secondary"
       :current-step="currentStep"
-      @click="$emit('decrement')"
+      @click="decrement"
     />
     <MyButton
       variant="primary"
       :current-step="currentStep"
-      @click="currentStep === 4 ? $emit('confirm') : $emit('increment')"
+      @click="currentStep === 4 ? confirm : increment"
     />
   </div>
 </template>
