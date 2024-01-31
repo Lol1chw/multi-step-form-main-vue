@@ -9,35 +9,13 @@ import MyButtonGroup from '@/components/buttonGroup/ui/MyButtonGroup.vue';
 import StepFirst from '@/pages/StepFirst.vue';
 
 import { useProvide, symbol } from '@/components/stepper/model/stepperContext';
-import { reactive, ref } from 'vue';
-import { breakpointsTailwind, useBreakpoints, useStepper } from '@vueuse/core';
-
+import { ref } from 'vue';
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
+import { FormKit } from '@formkit/vue';
 const currentStep = ref<number>(1)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const mdAndLarger = breakpoints.greaterOrEqual('md')
-
-const form = reactive({
-  name: '',
-  email: '',
-  phone: '',
-  subscription: 'type' as 'Arcade' | 'Advanced' | 'Pro',
-  addOns: [false, false, false]
-})
-
-const stepper = useStepper({
-  'user-information': {
-    title: 'Step 1',
-    isValid: () => form.name && form.email && form.phone,
-  },
-  'choose-subscription': {
-    title: 'Step 2',
-    isValid: () => ['Arcade', 'Advanced', 'Pro'].includes(form.subscription),
-  },
-  'choose-addOns': {
-    title: 'Step 3',
-  }
-})
 
 const confirm = (): void => {
   console.log(currentStep.value)
@@ -69,9 +47,14 @@ useProvide(symbol, {
       />
     </component>
 
-    <MyMain>
-      <StepFirst v-if="currentStep === 1" />
-    </MyMain>
+    <FormKit
+      type="form"
+      :actions="false"
+    >
+      <MyMain>
+        <StepFirst v-if="currentStep === 1" />
+      </MyMain>
+    </FormKit>
 
     <MyFooter v-if="!mdAndLarger">
       <MyButtonGroup />

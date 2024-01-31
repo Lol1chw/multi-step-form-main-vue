@@ -12,12 +12,12 @@ const { increment, decrement, confirm, currentStep } = useStepper(symbol)
       v-if="currentStep > 1"
       variant="secondary"
       :current-step="currentStep"
-      @click="decrement"
+      @click="decrement()"
     />
     <MyButton
       variant="primary"
       :current-step="currentStep"
-      @click="currentStep === 4 ? confirm : increment"
+      @click="currentStep === 4 ? confirm() : increment()"
     />
   </div>
 </template>
