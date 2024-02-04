@@ -7,12 +7,13 @@ import MyFooter from '@/layout/footer/MyFooter.vue';
 import MyStepper from '@/components/stepper/ui/MyStepper.vue';
 import MyButtonGroup from '@/components/buttonGroup/ui/MyButtonGroup.vue';
 import StepFirst from '@/pages/StepFirst.vue';
+import StepSecond from '@/pages/StepSecond.vue';
 
 import { useProvide, symbol } from '@/components/stepper/model/stepperContext';
 import { ref } from 'vue';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { FormKit, submitForm } from '@formkit/vue';
-const currentStep = ref<number>(1)
+const currentStep = ref<number>(2)
 
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const mdAndLarger = breakpoints.greaterOrEqual('md')
@@ -37,6 +38,7 @@ useProvide(symbol, {
   decrement
 })
 const mySubmitForm = (data: MultiStepForm): void => {
+  console.log(data)
   alert(JSON.stringify(data, null, 2))
 }
 
@@ -67,6 +69,8 @@ type MultiStepForm = {
     >
       <MyMain>
         <StepFirst v-if="currentStep === 1" />
+        <StepSecond v-if="currentStep === 2" />
+        <MyButtonGroup v-if="mdAndLarger" />
       </MyMain>
     </FormKit>
 
