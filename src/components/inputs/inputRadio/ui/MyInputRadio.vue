@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRaw } from 'vue';
 
 import type { FormKitFrameworkContext } from '@formkit/core';
 import type { MyInputRadioProps } from '@/types/inputRadio';
+import type { ComputedRef } from 'vue';
 
 const props = defineProps<{
   context: FormKitFrameworkContext & MyInputRadioProps
@@ -10,13 +11,20 @@ const props = defineProps<{
 
 const currentValue = ref<string>('')
 
-const click = (newValue: string): void => {
-  currentValue.value = newValue
-  props.context.node.input(newValue)
+const click = (titleValue: string, priceValue: number): void => {
+  const data = {
+    title: titleValue,
+    price: priceValue
+  }
+  currentValue.value = titleValue
+  props.context.node.input(data)
 }
 
 const options = props.context.myOptions
 
+function formatPrice (price: ComputedRef<number>): string {
+  return props.context.period ? `$${price}/yr` : `$${price}/mo`
+}
 </script>
 
 <template>
@@ -27,10 +35,10 @@ const options = props.context.myOptions
     <div
       role="radio"
       :class="[$style.radio, {[$style['radio--active']]: option.title === currentValue}]"
-      @click="click(option.title)"
+      @click="click(option.title, option.price.value)"
     >
       <component
-        :is="option.icon"
+        :is="toRaw(option.icon)"
         :class="$style.icon"
       />
 
@@ -42,7 +50,7 @@ const options = props.context.myOptions
           {{ option.title }}
         </label>
         <p :class="$style.price">
-          {{ `$${option.price}/mo` }}
+          {{ formatPrice(option.price) }}
         </p>
       </div>
 

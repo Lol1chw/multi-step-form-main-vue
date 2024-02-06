@@ -1,12 +1,13 @@
-import type { Component } from "vue"
+import type { Component, ComputedRef } from "vue"
 
 export type Options = {
     icon: Component
     title: string
-    price: number
+    price: ComputedRef<number>
 }
 
 export type MyInputRadioProps = {
     type: 'myRadio'
     myOptions: Options[]
+    period: boolean
 }

@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import MyCardInfo from '@/components/cardInfo/ui/MyCardInfo.vue';
 import MyRadioGroup from '@/components/inputGroup/radio/ui/MyRadioGroup.vue';
+import { useProvide, symbol } from '@/components/inputs/inputSwitcher/model/switcherContext';
+
 import { ref, watch } from 'vue';
 
-const value = ref<boolean>(false)
+const period = ref<boolean>(false)
 
-watch(value, (value) => {
-  console.log(value)
+watch(period, (period) => {
+  console.log(period)
+})
+
+useProvide(symbol, {
+  period
 })
 </script>
 
@@ -17,8 +23,9 @@ watch(value, (value) => {
   />
   <MyRadioGroup />
   <FormKit
-    v-model="value"
+    v-model="period"
     type="switcher"
+    name="period"
     :outer-class="$style.outer"
   />
 </template>

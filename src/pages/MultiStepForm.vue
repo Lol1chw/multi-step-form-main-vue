@@ -13,8 +13,8 @@ import { useProvide, symbol } from '@/components/stepper/model/stepperContext';
 import { ref } from 'vue';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { FormKit, submitForm } from '@formkit/vue';
-const currentStep = ref<number>(2)
 
+const currentStep = ref<number>(2)
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const mdAndLarger = breakpoints.greaterOrEqual('md')
 
@@ -37,6 +37,7 @@ useProvide(symbol, {
   increment,
   decrement
 })
+
 const mySubmitForm = (data: MultiStepForm): void => {
   console.log(data)
   alert(JSON.stringify(data, null, 2))

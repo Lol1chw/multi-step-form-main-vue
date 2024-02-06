@@ -2,14 +2,18 @@
 import ArcadeIcon from '@/components/icons/ArcadeIcon.vue';
 import AdvancedIcon from '@/components/icons/AdvancedIcon.vue';
 import ProIcon from '@/components/icons/ProIcon.vue';
+import { useSwitcher, symbol } from '@/components/inputs/inputSwitcher/model/switcherContext';
 
 import { FormKit } from '@formkit/vue';
 import type { Options } from '@/types/inputRadio';
+import { computed } from 'vue';
+
+const { period } = useSwitcher(symbol)
 
 const options: Options[] = [
-    { icon: ArcadeIcon, title: 'Arcade', price: 9 },
-    { icon: AdvancedIcon, title: 'Advanced', price: 12 },
-    { icon: ProIcon, title: 'Pro', price: 15}
+    { icon: ArcadeIcon, title: 'Arcade', price: computed(() => !period.value ? 9 : 9 * 10) },
+    { icon: AdvancedIcon, title: 'Advanced', price: computed(() => !period.value ? 12 : 12 * 10) },
+    { icon: ProIcon, title: 'Pro', price: computed(() => !period.value ? 15 : 15 * 10) }
     ]
 </script>
 
@@ -17,9 +21,10 @@ const options: Options[] = [
   <fieldset :class="$style.list">
     <FormKit
       type="myRadio"
-      name="myRadio"
+      name="plan"
       :my-options="options"
       :inner-class="$style.inner"
+      :period="period"
     />
   </fieldset>
 </template>

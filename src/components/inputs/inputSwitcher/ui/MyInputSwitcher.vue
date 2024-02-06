@@ -10,10 +10,11 @@ const value = computed({
   get: () => {
     return props.context?._value;
   },
-  set: (value) => {
+  set: (value: boolean): void => {
     props.context?.node.input(value);
   },
 });
+
 const click = () => {
   value.value = !value.value
 }
