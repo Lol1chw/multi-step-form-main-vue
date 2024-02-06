@@ -1,9 +1,9 @@
 import { provide, inject } from "vue"
 import type { InjectionKey, Ref } from "vue"
 
-const symbol = Symbol()
+const symbolSwitcher = Symbol()
 
-function useProvide(key: InjectionKey<Switch> | string, value: Switch): void {
+function useProvideSwitcher(key: InjectionKey<Switch> | string, value: Switch): void {
     provide(key, value)
 }
 
@@ -15,4 +15,4 @@ type Switch = {
     period: Ref<boolean>
 }
 
-export { useProvide, useSwitcher, symbol }
+export { useProvideSwitcher, useSwitcher, symbolSwitcher }

@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const currentValue = ref<string>('')
 
-const click = (titleValue: string, priceValue: number): void => {
+const click = (titleValue: string, priceValue: ComputedRef<number>): void => {
   const data = {
     title: titleValue,
     price: priceValue
@@ -35,7 +35,7 @@ function formatPrice (price: ComputedRef<number>): string {
     <div
       role="radio"
       :class="[$style.radio, {[$style['radio--active']]: option.title === currentValue}]"
-      @click="click(option.title, option.price.value)"
+      @click="click(option.title, option.price)"
     >
       <component
         :is="toRaw(option.icon)"

@@ -3,6 +3,7 @@ import type { DefaultConfigOptions } from '@formkit/vue';
 
 import MyInputRadio from '@/components/inputs/inputRadio/ui/MyInputRadio.vue';
 import MyInputSwitcher from '@/components/inputs/inputSwitcher/ui/MyInputSwitcher.vue';
+import MyInputCheckbox from '@/components/inputs/inputCheckbox/ui/MyInputCheckbox.vue';
 
 export const formkitConfig: DefaultConfigOptions = {
     inputs: {
@@ -12,6 +13,10 @@ export const formkitConfig: DefaultConfigOptions = {
         }),
         switcher: createInput(MyInputSwitcher, {
             type: 'input',
+        }),
+        myCheckbox: createInput(MyInputCheckbox, {
+            type: 'input',
+            props: ['myOptions', 'period']
         })
     }
 }

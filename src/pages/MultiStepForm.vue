@@ -8,18 +8,22 @@ import MyStepper from '@/components/stepper/ui/MyStepper.vue';
 import MyButtonGroup from '@/components/buttonGroup/ui/MyButtonGroup.vue';
 import StepFirst from '@/pages/StepFirst.vue';
 import StepSecond from '@/pages/StepSecond.vue';
+import StepThird from '@/pages/StepThird.vue';
 
 import { useProvide, symbol } from '@/components/stepper/model/stepperContext';
+import { useProvideSwitcher, symbolSwitcher } from '@/components/inputs/inputSwitcher/model/switcherContext';
+
 import { ref } from 'vue';
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core';
 import { FormKit, submitForm } from '@formkit/vue';
 
-const currentStep = ref<number>(2)
+const currentStep = ref<number>(3)
+const period = ref<boolean>(false)
 const breakpoints = useBreakpoints(breakpointsTailwind)
 const mdAndLarger = breakpoints.greaterOrEqual('md')
 
 const confirm = (): void => {
-  console.log(currentStep.value)
+
   submitForm('multi-step-form')
 }
 
@@ -38,8 +42,11 @@ useProvide(symbol, {
   decrement
 })
 
+useProvideSwitcher(symbolSwitcher, {
+  period
+})
+
 const mySubmitForm = (data: MultiStepForm): void => {
-  console.log(data)
   alert(JSON.stringify(data, null, 2))
 }
 
@@ -66,11 +73,12 @@ type MultiStepForm = {
       id="multi-step-form"
       type="form"
       :actions="false"
-      @submit="mySubmitForm"
+      @submit="currentStep === 4 && mySubmitForm"
     >
       <MyMain>
         <StepFirst v-if="currentStep === 1" />
         <StepSecond v-if="currentStep === 2" />
+        <StepThird v-if="currentStep === 3" />
         <MyButtonGroup v-if="mdAndLarger" />
       </MyMain>
     </FormKit>

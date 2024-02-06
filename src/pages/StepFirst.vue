@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import MyCardInfo from '@/components/cardInfo/ui/MyCardInfo.vue';
-import MyInputGroup from '@/components/inputGroup/input/ui/MyInputGroup.vue'
+import MyInputGroup from '@/components/inputGroup/input/ui/MyInputGroup.vue';
 </script>
 
 <template>

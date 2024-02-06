@@ -2,13 +2,13 @@
 import ArcadeIcon from '@/components/icons/ArcadeIcon.vue';
 import AdvancedIcon from '@/components/icons/AdvancedIcon.vue';
 import ProIcon from '@/components/icons/ProIcon.vue';
-import { useSwitcher, symbol } from '@/components/inputs/inputSwitcher/model/switcherContext';
+import { useSwitcher, symbolSwitcher } from '@/components/inputs/inputSwitcher/model/switcherContext';
 
 import { FormKit } from '@formkit/vue';
 import type { Options } from '@/types/inputRadio';
 import { computed } from 'vue';
 
-const { period } = useSwitcher(symbol)
+const { period } = useSwitcher(symbolSwitcher)
 
 const options: Options[] = [
     { icon: ArcadeIcon, title: 'Arcade', price: computed(() => !period.value ? 9 : 9 * 10) },

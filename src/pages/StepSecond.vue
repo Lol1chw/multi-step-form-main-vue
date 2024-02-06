@@ -1,19 +1,9 @@
 <script setup lang="ts">
 import MyCardInfo from '@/components/cardInfo/ui/MyCardInfo.vue';
 import MyRadioGroup from '@/components/inputGroup/radio/ui/MyRadioGroup.vue';
-import { useProvide, symbol } from '@/components/inputs/inputSwitcher/model/switcherContext';
+import { useSwitcher, symbolSwitcher } from '@/components/inputs/inputSwitcher/model/switcherContext';
 
-import { ref, watch } from 'vue';
-
-const period = ref<boolean>(false)
-
-watch(period, (period) => {
-  console.log(period)
-})
-
-useProvide(symbol, {
-  period
-})
+const { period } = useSwitcher(symbolSwitcher)
 </script>
 
 <template>

@@ -18,34 +18,33 @@ const props = defineProps<{
 
 <style module>
 .info {
-    margin-bottom: 13px;
+  margin-bottom: 13px;
 }
 
 .title {
-    color: var(--Maribe-blue);
+  color: var(--Maribe-blue);
 
-    font-size: 24px;
-    font-weight: 700;
+  font-size: 24px;
+  font-weight: 700;
 
-    margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 .description {
-    color: var(--Cool-gray);
+  color: var(--Cool-gray);
 
-    font-size: 16px;
+  font-size: 16px;
 }
 
 @media screen and (min-width: 768px) {
+  .info {
+    margin-bottom: 32px;
+  }
 
-    .info {
-      margin-bottom: 32px;
-    }
+  .title {
+    font-size: 32px;
 
-    .title {
-        font-size: 32px;
-
-        margin-bottom: 3px;
-    }
+    margin-bottom: 3px;
+  }
 }
 </style>
