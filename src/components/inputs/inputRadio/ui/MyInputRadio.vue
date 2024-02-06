@@ -72,10 +72,6 @@ const options = props.context.myOptions
   border-radius: 8px;
 }
 
-.icon {
-  grid-area: icon;
-}
-
 .info {
   display: flex;
   flex-direction: column;
@@ -102,5 +98,24 @@ const options = props.context.myOptions
 .radio--active {
   background-color: var(--Alabaster);
   border-color: var(--Purplish-blue);
+}
+
+@media screen and (min-width: 768px){
+  .radio {
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .icon {
+  order: 1;
+}
+
+  .info {
+    order: 3;
+  }
+
+  .input {
+    order: 2;
+  }
 }
 </style>

@@ -33,9 +33,9 @@ const options: Options[] = [
     gap: 11px;
 
     padding: 7px 0px;
+    margin-bottom: 23px;
 
     list-style: none;
-
 }
 
 .inner {
@@ -45,9 +45,9 @@ const options: Options[] = [
 }
 
 @media screen and (min-width: 768px) {
-    .list {
-        flex-grow: 1;
-        gap: 20px
+      .inner {
+      flex-direction: row;
+      gap: 18px;
     }
 }
 </style>

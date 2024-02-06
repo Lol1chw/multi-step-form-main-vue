@@ -7,14 +7,15 @@
 <style module>
 .main {
     max-width: 1110px;
-    max-height: 377px;
-    height: 100%;
+    /* max-height: 377px; */
+    /* height: 100%; */
 
     background-color: var(--White);
 
     margin: -80px 17px 0px 17px;
     padding-inline: 23px;
     padding-top: 28px;
+    padding-bottom: 32px;
 
     border-radius: 12px;
 }
@@ -24,6 +25,7 @@
         display: flex;
         flex-direction: column;
 
+        height: 100%;
         max-height: none;
 
         margin: 0;
