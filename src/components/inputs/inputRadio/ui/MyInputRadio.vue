@@ -1,73 +1,82 @@
 <script setup lang="ts">
-import { ref, toRaw } from 'vue';
+import { ref } from 'vue';
 
-import type { FormKitFrameworkContext } from '@formkit/core';
-import type { MyInputRadioProps } from '@/types/inputRadio';
-import type { ComputedRef } from 'vue';
+import type { MultiStepForm, Subscription } from '@/types/form';
 
 const props = defineProps<{
-  context: FormKitFrameworkContext & MyInputRadioProps
+  subscriptions: Subscription[]
+  form: MultiStepForm
+  periodDisplay: string
 }>()
 
-const currentValue = ref<string>('')
+const emit = defineEmits<{
+  (e: 'selectSubscription', name: 'Arcade' | 'Advanced' | 'Pro'): void
+}>()
 
-const click = (titleValue: string, priceValue: ComputedRef<number>): void => {
-  const data = {
-    title: titleValue,
-    price: priceValue
-  }
-  currentValue.value = titleValue
-  props.context.node.input(data)
-}
+const currentValue = ref<string>(props.form.subscription)
 
-const options = props.context.myOptions
-
-function formatPrice (price: ComputedRef<number>): string {
-  return props.context.period ? `$${price}/yr` : `$${price}/mo`
+const click = (name: 'Arcade' | 'Advanced' | 'Pro'): void => {
+  emit('selectSubscription', name)
+  currentValue.value = name
 }
 </script>
 
 <template>
-  <template
-    v-for="option in options"
-    :key="option.title"
-  >
-    <div
-      role="radio"
-      :class="[$style.radio, {[$style['radio--active']]: option.title === currentValue}]"
-      @click="click(option.title, option.price)"
+  <fieldset :class="$style.fieldset">
+    <template
+      v-for="(subscription, index) in subscriptions"
+      :key="subscription.name"
     >
-      <component
-        :is="toRaw(option.icon)"
-        :class="$style.icon"
-      />
-
-      <div :class="$style.info">
-        <label
-          :class="$style['subscription-name']"
-          :for="option.title"
-        >
-          {{ option.title }}
-        </label>
-        <p :class="$style.price">
-          {{ formatPrice(option.price) }}
-        </p>
-      </div>
-
-      <input
-        :id="option.title"
-        type="radio"
-        name="group"
-        :value="option.title"
-        :class="$style.input"
+      <div
+        :tabindex="index + 1"
+        role="radio"
+        :class="[$style.radio, {[$style['radio--active']]: subscription.name === currentValue}]"
+        @click="click(subscription.name)"
       >
-    </div>
-  </template>
+        <component
+          :is="subscription.icon"
+          :class="$style.icon"
+        />
+
+        <div :class="$style.info">
+          <label
+            :class="$style['subscription-name']"
+            :for="subscription.name"
+          >
+            {{ subscription.name }}
+          </label>
+
+          <p :class="$style.price">
+            ${{ form.period ? subscription.price * 10 : subscription.price }}/{{ periodDisplay }}
+          </p>
+        </div>
+
+        <input
+          :id="subscription.name"
+          tabindex="-1"
+          type="radio"
+          name="group"
+          :value="subscription.name"
+          :class="$style.input"
+        >
+      </div>
+    </template>
+  </fieldset>
 </template>
 
-
-
 <style module>
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  border: none;
+
+  padding: 0;
+
+  margin-bottom: 27px;
+}
+
 .radio {
   display: flex;
 
@@ -80,6 +89,19 @@ function formatPrice (price: ComputedRef<number>): string {
   border-radius: 8px;
 }
 
+.radio:hover {
+  border-color: var(--Purplish-blue);
+
+  cursor: pointer;
+
+  transition: border-color 0.5s;
+}
+
+.radio:focus-visible {
+  border: 3px solid var(--Cool-gray);
+  border-radius: 6px;
+}
+
 .info {
   display: flex;
   flex-direction: column;
@@ -90,10 +112,14 @@ function formatPrice (price: ComputedRef<number>): string {
 
   font-size: 16px;
   font-weight: 500;
+
+  cursor: pointer;
 }
 
 .input {
   opacity: 0;
+
+  cursor: pointer;
 }
 
 .price {
@@ -109,14 +135,18 @@ function formatPrice (price: ComputedRef<number>): string {
 }
 
 @media screen and (min-width: 768px){
+  .fieldset {
+    flex-direction: row;
+  }
+
   .radio {
     flex-direction: column;
     flex: 1;
   }
 
   .icon {
-  order: 1;
-}
+    order: 1;
+  }
 
   .info {
     order: 3;

@@ -6,30 +6,27 @@
 
 <style module>
 .main {
-    max-width: 1110px;
-    /* max-height: 377px; */
-    /* height: 100%; */
+  max-width: 1100px;
 
-    background-color: var(--White);
+  background-color: white;
 
-    margin: -80px 17px 0px 17px;
-    padding-inline: 23px;
-    padding-top: 28px;
-    padding-bottom: 32px;
+  margin-left: 17px;
+  margin-right: 17px;
+  padding: 27px 23px;
 
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
 @media screen and (min-width: 768px) {
-    .main {
-        display: flex;
-        flex-direction: column;
+  .main {
+    display: flex;
+    flex-direction: column;
 
-        height: 100%;
-        max-height: none;
+    height: 100%;
 
-        margin: 0;
-        padding: 32px 85px 18px 92px
-    }
+    margin: 0;
+
+    padding: 32px 85px 18px 92px;
+  }
 }
 </style>

@@ -19,6 +19,7 @@
 :root {
   /* primary */
   --Maribe-blue: hsl(213, 96%, 18%);
+  --Maribe-light: hsl(213, 96%, 30%);
   --Purplish-blue: hsl(243, 100%, 62%);
   --Pastel-blue: hsl(228, 100%, 84%);
   --Light-blue: hsl(206, 94%, 87%);
@@ -43,7 +44,7 @@
 body {
   height: 100dvh;
   min-height: 100dvh;
-  color: var(--White);
+  color: var(--Maribe-blue);
   background: var(--Magnolia);
   transition:
     color 0.5s,

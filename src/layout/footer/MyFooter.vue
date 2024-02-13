@@ -6,11 +6,12 @@
 
 <style module>
 .footer {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
 
-    background-color: var(--White);
+  background-color: white;
 
-    padding: 15px;
+  padding: 15px;
+
+  margin-top: auto;
 }
 </style>

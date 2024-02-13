@@ -2,16 +2,13 @@
 import { computed } from 'vue';
 
 type ButtonProps = {
-  currentStep: number
+  currentStep?: number
   variant?: 'primary' | 'secondary'
 }
 
 const props = withDefaults(defineProps<ButtonProps>(), {
-  variant: 'primary'
-})
-
-const buttonTitle = computed(() => {
-    return props.currentStep === 4 ? 'Confirm' : 'Next Step'
+  variant: 'primary',
+  currentStep: 1
 })
 
 const buttonClass = computed(() => {
@@ -29,15 +26,16 @@ defineEmits<{
     :class="[$style.button, $style.primary, $style[buttonClass]]"
     @click="$emit('click')"
   >
-    {{ buttonTitle }}
+    <slot />
   </button>
 
   <button
     v-else
     :class="[$style.button, $style.secondary]"
+    type="button"
     @click="$emit('click')"
   >
-    Go Back
+    <slot />
   </button>
 </template>
 
@@ -48,8 +46,13 @@ defineEmits<{
   font-size: 14px;
   font-family: Ubuntu;
 }
-.primary {
 
+.button:focus-visible {
+  border: 3px solid var(--Cool-gray);
+  border-radius: 6px;
+}
+
+.primary {
   background-color: var(--Maribe-blue);
 
   color: var(--White);
@@ -57,6 +60,13 @@ defineEmits<{
   border-radius: 6px;
 
   padding: 10px 18px;
+}
+
+.primary:hover {
+  opacity: 0.9;
+
+  background-color: var(--Maribe-light);
+  cursor: pointer;
 }
 
 .secondary {
@@ -69,8 +79,20 @@ defineEmits<{
   font-weight: 500;
 }
 
+.secondary:hover {
+  color: var(--Maribe-blue);
+
+  cursor: pointer;
+}
+
 .button--background-color-purplish {
-    background-color: var(--Purplish-blue);
+  background-color: var(--Purplish-blue);
+}
+
+.button--background-color-purplish:hover {
+  background-color: var(--Purplish-blue);
+
+  opacity: 0.5;
 }
 
 @media screen and (min-width: 768px) {

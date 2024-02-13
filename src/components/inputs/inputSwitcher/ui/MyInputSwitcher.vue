@@ -1,51 +1,57 @@
 <script setup lang="ts">
-import type { FormKitFrameworkContext } from '@formkit/core';
 import { computed } from 'vue';
 
+import type { MultiStepForm } from '@/types/form';
+
 const props = defineProps<{
-    context: FormKitFrameworkContext
+  form: MultiStepForm
+}>()
+
+const emit = defineEmits<{
+  (e: 'toggle'): void
 }>()
 
 const value = computed({
   get: () => {
-    return props.context?._value;
+    return props.form.period
   },
-  set: (value: boolean): void => {
-    props.context?.node.input(value);
+  set: (): void => {
+    emit('toggle')
   },
-});
-
-const click = () => {
-  value.value = !value.value
-}
+})
 </script>
 
 <template>
   <div :class="$style.period">
     <label
       for="switch"
-      :class="[$style.label, {[$style['label--active']]: !value}]"
+      :class="[$style.label, {[$style['label--active']]: !form.period}]"
     >
       Monthly
     </label>
 
     <div
+      tabindex="4"
       :class="$style.switch"
-      @click="click"
+      @keypress="$emit('toggle')"
+      @click="$emit('toggle')"
     >
       <input
         id="switch"
         v-model="value"
+        tabindex="-1"
+        name="switch"
         :class="$style.input"
         type="checkbox"
         role="switch"
       >
+      
       <div :class="[$style.slider, $style.round]" />
     </div>
 
     <label
       for="switch"
-      :class="[$style.label, {[$style['label--active']]: value}]"
+      :class="[$style.label, {[$style['label--active']]: form.period}]"
     >
       Yearly
     </label>
@@ -54,34 +60,33 @@ const click = () => {
 
 <style module>
 .period {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
 
-    padding: 10px;
+  padding: 10px;
 
-    background-color: var(--Magnolia);
+  background-color: var(--Magnolia);
 
-    border-radius: 12px;
+  border-radius: 12px;
 }
 
 .label {
-    color: var(--Cool-gray);
+  color: var(--Cool-gray);
 
-    font-size: 14px;
-    font-weight: 600;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .label--active {
-    color: var(--Maribe-blue);
+  color: var(--Maribe-blue);
 }
 
-
 .input {
-    opacity: 0;
-    z-index: 99;
-    width: 100%;
+  opacity: 0;
+  z-index: 99;
+  width: 100%;
 }
 
 .switch {

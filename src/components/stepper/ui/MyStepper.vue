@@ -44,10 +44,12 @@ defineProps<{
       <div :class="[$style.step, index + 1 === currentStep && $style['step--active']]">
         {{ index + 1 }}
       </div>
+      
       <div v-if="mdAndLarger">
         <p :class="$style.title">
           {{ item.title.toUpperCase() }}
         </p>
+
         <p :class="$style.description">
           {{ item.description.toUpperCase() }}
         </p>
@@ -68,6 +70,7 @@ defineProps<{
   display: flex;
   gap: 15px;
 }
+
 .step {
   display: flex;
   justify-content: center;
@@ -108,13 +111,13 @@ defineProps<{
 }
 
 @media screen and (min-width: 768px) {
-    .stepper {
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: start;
-        gap: 29px;
+  .stepper {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    gap: 29px;
 
-        height: 100%;
-    }
+    height: 100%;
+  }
 }
 </style>

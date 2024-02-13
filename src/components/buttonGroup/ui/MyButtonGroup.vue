@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import MyButton from '@/components/button/ui/MyButton.vue';
+defineProps<{
+  currentStep: number
+}>()
 
-import { useStepper, symbol } from '@/components/stepper/model/stepperContext';
-
-const { increment, decrement, confirm, currentStep } = useStepper(symbol)
+defineEmits<{
+  (e: 'click:back'): void
+  (e: 'click:submit'): void
+}>()
 </script>
 
 <template>
@@ -11,26 +15,31 @@ const { increment, decrement, confirm, currentStep } = useStepper(symbol)
     <MyButton
       v-if="currentStep > 1"
       variant="secondary"
-      :current-step="currentStep"
-      @click="decrement()"
-    />
+      type="button"
+      @click="$emit('click:back')"
+    >
+      Go back
+    </MyButton>
+
     <MyButton
       variant="primary"
-      :current-step="currentStep"
-      @click="currentStep === 4 ? confirm() : increment()"
-    />
+      type="button"
+      @click="$emit('click:submit')"
+    >
+      {{ currentStep === 4 ? 'Confrim' : 'Next Step' }}
+    </MyButton>
   </div>
 </template>
 
 <style module>
 .buttonWrapper {
-    display: inline-flex;
-    justify-content: flex-end;
+  display: inline-flex;
+  justify-content: flex-end;
 
-    width: 100%;
+  width: 100%;
 }
 
 .buttonGroup {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 </style>

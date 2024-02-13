@@ -10,6 +10,7 @@ const props = defineProps<{
     <h1 :class="$style.title">
       {{ props.title }}
     </h1>
+
     <p :class="$style.description">
       {{ props.description }}
     </p>
@@ -18,7 +19,7 @@ const props = defineProps<{
 
 <style module>
 .info {
-  margin-bottom: 13px;
+  margin-bottom: 17px;
 }
 
 .title {

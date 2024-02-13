@@ -5,23 +5,20 @@
 </template>
 
 <style module>
-.layout {
-  display: grid;
-  grid:
-    "header" auto
-    "main" 1fr
-    "footer" auto
-    / 1fr;
-  gap: 8px;
+@media screen and (max-width: 768px) {
+  .layout {
+    background-image: url('@/assets/images/bg-sidebar-mobile.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
 
-  border-radius: 12px;
-
-  height: 100%;
-
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 }
 
 @media screen and (min-width: 768px) {
-    .layout {
+  .layout {
     display: grid;
     grid:
         "sidebar main" 1fr
@@ -33,10 +30,13 @@
     padding: 17px 14px;
     margin: auto;
 
+    height: 100%;
     width: 100%;
 
     max-width: 938px;
     max-height: 603px;
+
+    border-radius: 12px;
   }
 }
 </style>

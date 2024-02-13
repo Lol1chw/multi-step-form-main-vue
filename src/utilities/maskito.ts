@@ -1,13 +1,11 @@
-import { maskitoWithPlaceholder } from "@maskito/kit"
-import { maskitoAddOnFocusPlugin, maskitoCaretGuard, maskitoPrefixPostprocessorGenerator, maskitoRemoveOnBlurPlugin } from '@maskito/kit'
+import { maskitoWithPlaceholder } from "@maskito/kit";
+import { maskitoAddOnFocusPlugin, maskitoCaretGuard, maskitoPrefixPostprocessorGenerator, maskitoRemoveOnBlurPlugin } from '@maskito/kit';
 
-import type { MaskitoOptions } from '@maskito/core'
+export const PLACEHOLDER = '+  (   ) ___-__-__';
 
-export const PLACEHOLDER = '+  (   ) ___-__-__'
+export const { removePlaceholder, ...placeholderOptions } = maskitoWithPlaceholder(PLACEHOLDER);
 
-export const { removePlaceholder, plugins, ...placeholderOptions } = maskitoWithPlaceholder(PLACEHOLDER)
-
-export const options: MaskitoOptions = {
+export const maskitoOptions = {
   preprocessors: placeholderOptions.preprocessors,
   postprocessors: [maskitoPrefixPostprocessorGenerator('+7'), ...placeholderOptions.postprocessors],
   plugins: [
@@ -19,4 +17,4 @@ export const options: MaskitoOptions = {
     ])
   ],
   mask: ['+', '7', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]
-}
+};
