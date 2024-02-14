@@ -151,7 +151,7 @@ function change () {
   stepper.goTo('subscription')
   currentStep.value = 2
 }
-console.log(mdAndLarger.value)
+
 </script>
 
 <template>
